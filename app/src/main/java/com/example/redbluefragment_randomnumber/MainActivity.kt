@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.setFragmentResultListener(RANDOM_NUMBER_GENERATED, this) {
                 requestKey, bundle ->
             // swap out red fragment for blue fragment
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainerView, BlueFragment.newInstance())
-                    .addToBackStack("BLUE")
-                    .commit()
+//                supportFragmentManager.beginTransaction()
+//                    .add(R.id.red_fragment_container, BlueFragment.newInstance())
+//                    .addToBackStack("BLUE")
+//                    .commit()
         }
 
         // 1. add: Pause the red fragment, and add the blue fragment "on top"

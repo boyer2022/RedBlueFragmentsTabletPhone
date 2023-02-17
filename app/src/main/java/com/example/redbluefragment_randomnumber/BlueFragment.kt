@@ -27,11 +27,16 @@ class BlueFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_blue, container, false)
         displayRandomTextView = view.findViewById(R.id.random_number_textview)
-        showRandomNumber()
+
+//        showRandomNumber()
+        randomNumberViewModel.randomNumber.observe(requireActivity()) {
+            // the new value -> task to do with the new value
+            random -> showRandomNumber(random)
+        }
+
         return view
     }
-    private fun showRandomNumber() {
-        val randomNumber = randomNumberViewModel.randomNumber
+    private fun showRandomNumber(randomNumber: Int) {
         displayRandomTextView.text = randomNumber.toString()
     }
 
