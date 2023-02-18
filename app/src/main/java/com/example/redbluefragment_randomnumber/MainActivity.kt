@@ -8,21 +8,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+// Need to figure out what size is the screen?
+        // If smaller, less than 600dp, then use listener and swap fragments
+            // Otherwise, nothing else is needed
+        val deviceSmallestWidth = resources.configuration.smallestScreenWidthDp
+
         // Need to listen for RedFragment
-        supportFragmentManager.setFragmentResultListener(RANDOM_NUMBER_GENERATED, this) {
-                requestKey, bundle ->
+        if (deviceSmallestWidth < 600) {
+        supportFragmentManager.setFragmentResultListener(RANDOM_NUMBER_GENERATED, this)
+            { requestKey, bundle ->
             // swap out red fragment for blue fragment
-//                supportFragmentManager.beginTransaction()
-//                    .add(R.id.red_fragment_container, BlueFragment.newInstance())
-//                    .addToBackStack("BLUE")
-//                    .commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.red_fragment_container, BlueFragment.newInstance(), "Blue")
+                .addToBackStack("BLUE")
+                .commit()
+            }
         }
-
-        // 1. add: Pause the red fragment, and add the blue fragment "on top"
-
-        // 2. replace: Replace the red fragment with the blue fragment <- red fragment is destroyed
-
-
-
     }
 }
